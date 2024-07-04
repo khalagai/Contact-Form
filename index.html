@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Frontend Mentor | Contact form</title>
+</head>
+<body>
+  <div class="container">
+    <div class="heading">
+      <h1>Contact Us</h1>
+    </div>
+    <div class="form">
+      <form id="contact-us" method="POST" action="#"> 
+        <div class="names">
+          <div class="fname">
+            <label for="fname">First Name: <input id="fname" type="text" name="fname"></label>
+            <p id="error1" style="display:none">This field is required</p>          
+          </div>
+          <div class="lname">
+            <label for="lname">Last Name: <input id="lname" type="text" name="lname"></label>
+            <p id="error2" style="display:none">This field is required</p>
+          </div>
+        </div>
+        <div class="email">         
+          <label for="email">Email Address: <input id="email" type="email" name="email"></label>
+          <p id="error3" style="display:none">Please enter a valid email address</p>
+        </div>
+        <span>Query Type:</span>
+        <div class="query">          
+          <div class="gen">            
+            <label for="query-gen"><input id="query-gen" class="inline" type="radio" name="query">General Enquiry</label>
+            <p id="error4" style="display:none">Please select a query type</p>
+          </div>
+          <div class="sup">
+            <label for="query-sup"><input id="query-sup" class="inline"  type="radio" name="query">Support Request</label>
+          </div>
+          <p id="error5" style="display:none">Please select a query type</p>
+        </div>
+        <div class="message" >
+          <span>Message: </span>
+          <label for="message"><textarea id="message" name="message"></textarea></label>
+          <p id="error6" style="display:none"> This field is required</p>
+        </div>
+        <div class="consent">
+          <label for="consent"><input id="consent" class="inline" type="checkbox">I consent to being contacted by the team</label>       
+          <p id="error7" style="display:none">To submit this form, please consent to being contacted</p>
+        </div>
+        <div class="submit">
+          <label for="submit"><input id="submit" type="submit" value="submit"></label>
+          <p id="success" style="display:none">Message Sent! </br>
+          Thanks for completing the form. We'll be in touch soon!</p>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+    Coded by <a href="#">Khalagai</a>.
+  </div>
+  <script src="./index.js" charset="UTF-8"></script>
+</body>
+</html>
