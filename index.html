@@ -11,58 +11,65 @@
   <title>Frontend Mentor | Contact form</title>
 </head>
 <body>
-  <div class="container">
-    <div class="heading">
-      <h1>Contact Us</h1>
+    <main class="card">
+        <form class="form" id="contactUs" method="POST" action="#">
+            <h1>Contact Us</h1>
+            <fieldset class="names">
+                <div class="f-name">
+                    <label class="required" for="fName">First Name <span aria-label="required">*</span></label>
+                    <input type="text" id="fName" name="fName" required aria-describedby="fNameError">
+                    <span class="error" id="fNameError" aria-live="polite">This field is required</span>
+                </div>
+                <div class="l-name">
+                    <label class="required" for="lName">Last Name <span aria-label="required">*</span></label>
+                    <input type="text" id="lName" name="lName" required aria-describedby="lNameError">
+                    <span class="error" id="lNameError" aria-live="polite">This field is required</span>
+                </div>
+            </fieldset>
+            <fieldset class="email">
+                <label class="required" for="email">Email Address <span aria-label="required">*</span></label>
+                <input type="email" id="email" name="email" required aria-describedby="emailError">
+                <span class="error" id="emailError" aria-live="polite">Please enter a valid email address</span>
+            </fieldset>
+            <fieldset class="query">
+                <legend class="required">Query Type <span aria-label="required">*</span></legend>
+                <div class="queryMsg">
+                    <div class="que">
+                        <input id="generalQuery" type="radio" name="query" required aria-describedby="queryError">
+                        <label for="generalQuery"> General Enquiry</label>
+                    </div>
+                    <div class="que">
+                        <input id="supportQuery" type="radio" name="query" required aria-describedby="queryError">
+                        <label for="supportQuery"> Support Request</label>
+                    </div>
+                </div>
+                <div class="queryMsg"><span class="error" id="queryError" aria-live="polite">Please select a query type</span></div>
+            </fieldset>
+            <fieldset class="textArea">
+                <label class="required" for="textArea">Message <span aria-label="required">*</span></label>
+                <textarea name="message" id="textArea" required aria-describedby="messageError"></textarea>
+                <span class="error" id="messageError" aria-live="polite">This field is required</span>
+            </fieldset>
+            <fieldset class="checkBox">
+                <div class="checkMsg">
+                    <input type="checkbox" id="consent" name="consent" required aria-describedby="consentError">
+                    <label class="required" for="consent">I consent to being contacted by the team <span aria-label="required">*</span></label>
+                </div>
+                <div class="checkMsg">
+                    <span class="error" id="consentError" aria-live="polite">To submit this form, please consent to being contacted</span>
+                </div>
+            </fieldset>
+            <div class="submitForm">
+                <button id="submitButton">Submit</button>
+                <span class="success" id="successSubmit" aria-live="assertive">Message Sent! <br>
+                Thanks for completing the form. We'll be in touch soon!</span>
+            </div>
+        </form>
+    </main>
+    <div class="attribution">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+        Coded by <a href="#">Khalagai</a>.
     </div>
-    <div class="form">
-      <form id="contact-us" method="POST" action="#"> 
-        <div class="names">
-          <div class="fname">
-            <label for="fname">First Name: <input id="fname" type="text" name="fname"></label>
-            <p id="error1" style="display:none">This field is required</p>          
-          </div>
-          <div class="lname">
-            <label for="lname">Last Name: <input id="lname" type="text" name="lname"></label>
-            <p id="error2" style="display:none">This field is required</p>
-          </div>
-        </div>
-        <div class="email">         
-          <label for="email">Email Address: <input id="email" type="email" name="email"></label>
-          <p id="error3" style="display:none">Please enter a valid email address</p>
-        </div>
-        <span>Query Type:</span>
-        <div class="query">          
-          <div class="gen">            
-            <label for="query-gen"><input id="query-gen" class="inline" type="radio" name="query">General Enquiry</label>
-            <p id="error4" style="display:none">Please select a query type</p>
-          </div>
-          <div class="sup">
-            <label for="query-sup"><input id="query-sup" class="inline"  type="radio" name="query">Support Request</label>
-          </div>
-          <p id="error5" style="display:none">Please select a query type</p>
-        </div>
-        <div class="message" >
-          <span>Message: </span>
-          <label for="message"><textarea id="message" name="message"></textarea></label>
-          <p id="error6" style="display:none"> This field is required</p>
-        </div>
-        <div class="consent">
-          <label for="consent"><input id="consent" class="inline" type="checkbox">I consent to being contacted by the team</label>       
-          <p id="error7" style="display:none">To submit this form, please consent to being contacted</p>
-        </div>
-        <div class="submit">
-          <label for="submit"><input id="submit" type="submit" value="submit"></label>
-          <p id="success" style="display:none">Message Sent! </br>
-          Thanks for completing the form. We'll be in touch soon!</p>
-        </div>
-      </form>
-    </div>
-  </div>
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
-    Coded by <a href="#">Khalagai</a>.
-  </div>
-  <script src="./index.js" charset="UTF-8"></script>
+    <script src="./index.js" charset="UTF-8"></script>
 </body>
 </html>

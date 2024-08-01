@@ -1,95 +1,76 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("contact-us");
-
-    form.addEventListener("submit", (event) => {
-        event.preventDefault();
-        validateForm();
-
-    });
-
-    form.addEventListener("keypress", (event) => {
-        if(event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            validateForm();
-        }        
-    });
+    const form = document.getElementById("contactUs");
+    const submitBtn = document.getElementById("submitButton");
 
     const validateForm = () => {
-        const fName = document.getElementById("fname").value;
-        const lName = document.getElementById("lname").value;
-        const email = document.getElementById("email").value;
-        const query = document.querySelector(`input[name="query"]:checked`);
-        const message = document.getElementById("message").value;
-        const consent = document.getElementById("consent").checked;
-        const success = document.getElementById("success");
+        const fields = [
+            { id: "fName", errorId: "fNameError" },
+            { id: "lName", errorId: "lNameError" },
+            { id: "email", errorId: "emailError", isEmail: true },
+            { id: "generalQuery", errorId: "queryError", isQuery: true },
+            { id: "textArea", errorId: "messageError" },
+            { id: "consent", errorId: "consentError", isCheckbox: true }
+        ];
 
+        const success = document.getElementById("successSubmit");
         let isValid = true;
 
-        if(!fName) {
-            showError("error1");
-            showBorder("fname");
-            isValid = false;
-        } else {
-            clearError("error1");
-            clearBoarder("fname");
-        }
-        if(!lName) {
-            showError("error2");
-            showBorder("lname");
-            isValid = false;
-        } else {
-            clearError("error2");
-            clearBoarder("lname");
-        }
-        if(!email) {
-            showError("error3");
-            showBorder("email");
-            isValid = false;
-        } else {
-            clearError("error3");
-            clearBoarder("email");
-        }
-        if(!query) {
-            showError("error4");
-            isValid = false;
-        } else {
-            clearError("error4");
-        }
-        if(!message) {
-            showError("error6");
-            showBorder("message");
-            isValid = false;
-        } else {
-            clearError("error6");
-            clearBoarder("message");
-        }
-        if(!consent) {
-            showError("error7");
-            isValid = false;
-        } else {
-            clearError("error7");
-        }
+        fields.forEach(field => {
+            const element = document.getElementById(field.id);
+            let value;
 
-        if(isValid) {
+            if (field.isQuery) {
+                value = document.querySelector(`input[name="query"]:checked`);
+            } else if (field.isCheckbox) {
+                value = element.checked;
+            } else {
+                value = element.value.trim();
+            }
+
+            if (!value) {
+                showError(field.errorId);
+                isValid = false;
+            } else if (field.isEmail && !isValidEmail(value)) {
+                showError(field.errorId);
+                isValid = false;
+            } else {
+                clearError(field.errorId);
+            }
+        });
+
+        if (isValid) {
             success.style.display = "block";
+            success.focus();
             form.reset();
         }
-    }
+    };
+
+    const isValidEmail = (email) => {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailPattern.test(email);
+    };
 
     const showError = (errorId) => {
-        document.getElementById(errorId).style.display = "block";
-    }
+        const errorElement = document.getElementById(errorId);
+        errorElement.style.display = "block";
+        errorElement.setAttribute("aria-hidden", "false");
+    };
 
     const clearError = (errorId) => {
-        document.getElementById(errorId).style.display = "none";
-    }
+        const errorElement = document.getElementById(errorId);
+        errorElement.style.display = "none";
+        errorElement.setAttribute("aria-hidden", "true");
+    };
 
-    const showBorder = (inputId) => {
-        document.getElementById(inputId).style.border = "2px solid hsl(0, 66%, 54%)";
-    }
+    submitBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        validateForm();
+    });
 
-    const clearBoarder = (inputId) => {
-        document.getElementById(inputId).style.border = "2px solid hsl(187, 24%, 22%)";
-    }
-   
-})
+    submitBtn.addEventListener("keypress", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            validateForm();
+        }
+    });
+});
